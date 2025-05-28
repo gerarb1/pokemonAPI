@@ -62,5 +62,67 @@ python manage.py graph_models pokemon -o pokemon_models.png
 Este es el modelo entidad-relación usado en el proyecto:
 
 ![Modelo ER](modelo.png)
+## Enpoints disponibles
+| Endpoint              | Método   | Descripción                       | Argumentos esperados                                                    |
+| --------------------- | -------- | --------------------------------- | ----------------------------------------------------------------------- |
+| `/api/pokemons/`      | GET      | Lista todos los Pokémon           | –                                                                       |
+| `/api/pokemons/`      | POST     | Crea un nuevo Pokémon             | `nombre`, `tipo_ids`, `habilidad_ids`, `movimiento_ids`, `evolucion_id` |
+| `/api/pokemons/<id>/` | GET      | Obtiene un Pokémon específico     | –                                                                       |
+| `/api/pokemons/<id>/` | PUT      | Actualiza un Pokémon              | Igual que POST                                                          |
+| `/api/pokemons/<id>/` | DELETE   | Elimina un Pokémon                | –                                                                       |
+| `/api/tipos/`         | GET/POST | Listado y creación de tipos       | `nombre`                                                                |
+| `/api/habilidades/`   | GET/POST | Listado y creación de habilidades | `nombre`                                                                |
+| `/api/movimientos/`   | GET/POST | Listado y creación de movimientos | `nombre`, `tipo` (opcional)                                             |
 
+## crear un tipo 
+```bash
+curl -X POST http://127.0.0.1:8000/api/tipos/ \
+  -H "Content-Type: application/json" \
+  -d '{"nombre": "Fuego"}'
+```
+## crear una habilidad 
+```bash
+curl -X POST http://127.0.0.1:8000/api/habilidades/ \
+  -H "Content-Type: application/json" \
+  -d '{"nombre": "Mar Llamas"}'
+```
+## crear un movimiento
+curl -X POST http://127.0.0.1:8000/api/movimientos/ \
+  -H "Content-Type: application/json" \
+  -d '{"nombre": "Lanzallamas"}'
+## estructura del proyecto 
+API_POKEMON/
+│
+├── env/                        # Entorno virtual de Python
+│
+├── POKE/                      # Carpeta del proyecto Django (donde están settings.py, urls.py, etc.)
+│   ├── __init__.py
+│   ├── asgi.py
+│   ├── settings.py
+│   ├── urls.py
+│   └── wsgi.py
+│
+├── pokemon/                   # App principal del proyecto 
+│   ├── __init__.py
+│   ├── admin.py
+│   ├── apps.py
+│   ├── models.py
+│   ├── serializers.py
+│   ├── urls.py
+│   ├── views.py
+│   ├── tests.py
+│   └── migrations/
+│       └── __init__.py
+│
+├── db.sqlite3                 # Base de datos SQLite generada automáticamente
+│
+├── manage.py                  # Script de administración de Django
+│
+├── modelo.png                 # Imagen generada del diagrama de modelos (graph_models)
+│
+├── documentacion.md           # Archivo markdown donde documentarás tu API
+│
+├── documentaction.md          # Posible duplicado del anterior (corrige si es un error tipográfico)
+│
+├── requirements.txt           # Lista de dependencias del proyecto (recomendado que esté solo una vez)
 
