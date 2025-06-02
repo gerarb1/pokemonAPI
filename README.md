@@ -15,7 +15,7 @@ Una API REST construida con Django y Django REST Framework que permite gestionar
 ---
 
 ##  Estructura del proyecto
-
+```
 API POKEMON/
 ├── env/                    # Entorno virtual (carpeta del entorno)
 ├── POKE/                   # Proyecto Django (settings, wsgi, etc.)
@@ -35,6 +35,7 @@ API POKEMON/
 ├── modelo.png              # Diagrama de modelo generado con Graphviz
 ├── README.md               # Documentación general del proyecto
 └── requirements.txt        # Dependencias del proyecto
+```
 ---
 
 ##  Modelos
