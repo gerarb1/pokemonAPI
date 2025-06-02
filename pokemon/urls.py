@@ -1,16 +1,14 @@
-from django.urls import path, include
-from rest_framework.routers import DefaultRouter
-from .views import TipoViewSet, HabilidadViewSet, MovimientoViewSet, PokemonViewSet
-from .views import PokemonListCreateView
+from rest_framework import routers
+from .api import TipoViewSet,HabilidadViewSet,MovimientoViewSet,PokemonViewSet
 
-router = DefaultRouter()
-router.register(r'tipos', TipoViewSet)
-router.register(r'habilidades', HabilidadViewSet)
-router.register(r'movimientos', MovimientoViewSet)
-router.register(r'pokemons', PokemonViewSet)
+router = routers.DefaultRouter()
 
-urlpatterns = [
-    path('', include(router.urls)),  # Quitamos el 'api/' porque ya viene del archivo principal
-    path('pokemons/', PokemonListCreateView.as_view(), name='pokemon-list-create'),
-]
+router.register('api/pokemon',PokemonViewSet,'pokemon')
+router.register ('api/tipo',TipoViewSet, 'tipos')
+router.register('api/habilidades',HabilidadViewSet,'habilidades')
+router.register('api/movimientos',MovimientoViewSet,'movimientos')
+
+
+urlpatterns = router.urls
+
 

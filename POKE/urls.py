@@ -23,8 +23,7 @@ def root_view(request):
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include('pokemon.urls')),  
-    path('', root_view),
+    path('', include('pokemon.urls'))
     
 ]
 
